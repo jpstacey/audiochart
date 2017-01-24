@@ -382,12 +382,12 @@ var Player = (function() {
 	 * @param {integer} offset - the number of milliseconds before highlighting this datum
 	 */
 	Player.prototype._highlightEnqueue = function(series, row, offset) {
-		var callback = (function(that) {
-			return function() {
-				that.visualCallback(series, row)
-			}
-		})(this)
-		setTimeout(callback, offset)
+		// For some reason, if this is included in play() there will
+		// be no visual effect -- browser optimisation?
+		var that = this
+		setTimeout(function() {
+			that.visualCallback(series, row)
+		}, offset)
 	}
 
 	return Player
