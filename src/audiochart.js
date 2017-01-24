@@ -308,12 +308,10 @@ var WebAudioSounder = (function() {
 	 * @param {integer} offset - the number of milliseconds to elapse before the change
 	 */
 	WebAudioSounder.prototype.frequency = function(frequency, offset) {
-		var callback = (function(that) {
-			return function() {
-				that.oscillator.frequency.value = frequency
-			}
-		})(this)
-		setTimeout(callback, offset)
+		var that = this
+		setTimeout(function() {
+			that.oscillator.frequency.value = frequency
+		}, offset)
 	}
 
 	/**
